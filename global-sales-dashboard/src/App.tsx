@@ -7,6 +7,8 @@ import { OrderList } from './components/OrderList';
 import { SalesMap } from './components/SalesMap';
 import { RevenueChart } from './components/RevenueChart';
 
+const HOST = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
+
 function App() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [selectedCity, setSelectedCity] = useState<string>("Todas");
@@ -52,7 +54,7 @@ function App() {
   useEffect(() => {
     const fetchInitialOrders = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/orders");
+        const response = await fetch(`${HOST}/api/orders`);
         if (!response.ok) throw new Error("Error en la red");
         const data: Order[] = await response.json();
         setOrders(data);
