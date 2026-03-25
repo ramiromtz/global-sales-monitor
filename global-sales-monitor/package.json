@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "postinstall": "prisma generate",
     "start": "npx prisma db push && npx tsx prisma/seed.ts && npx tsx src/index.ts",
     "dev": "npx tsx watch src/index.ts"
   },
