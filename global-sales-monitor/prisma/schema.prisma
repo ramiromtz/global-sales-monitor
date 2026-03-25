@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model Store {
+  id     Int     @id @default(autoincrement())
+  name   String  @db.VarChar(100) 
+  city   String
+  lat    Float
+  lng    Float
+  orders Order[]
+}
+
+model Order {
+  id           Int      @id @default(autoincrement())
+  amount       Float
+  status       String   @default("pending") // pending, preparing, delivered
+  createdAt    DateTime @default(now())
+  storeId      Int
+  store        Store    @relation(fields: [storeId], references: [id])
+}
