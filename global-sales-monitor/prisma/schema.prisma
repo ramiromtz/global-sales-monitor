@@ -16,10 +16,11 @@ model Store {
 }
 
 model Order {
-  id           Int      @id @default(autoincrement())
-  amount       Float
-  status       String   @default("pending") // pending, preparing, delivered
-  createdAt    DateTime @default(now())
-  storeId      Int
-  store        Store    @relation(fields: [storeId], references: [id])
+  id        Int      @id @default(autoincrement())
+  amount    Float    
+  createdAt DateTime @default(now())
+  storeId   Int
+  store     Store    @relation(fields: [storeId], references: [id])
+
+  @@map("orders") // <-- Este es el truco mágico
 }

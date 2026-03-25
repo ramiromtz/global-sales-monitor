@@ -18,5 +18,6 @@ setInterval(async () => {
     console.log(`✔ Venta simulada: $${randomAmount} en tienda #${randomStore}`);
   } catch (error) {
     console.error("Error en el simulador");
+    console.log(error)
   }
 }, 5000); // Una venta cada 3 segundos
