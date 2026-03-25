@@ -20,6 +20,9 @@ async function main() {
   await prisma.order.deleteMany();
   await prisma.store.deleteMany();
 
+  await prisma.$executeRaw`ALTER TABLE Store AUTO_INCREMENT = 1;`;
+  await prisma.$executeRaw`ALTER TABLE orders AUTO_INCREMENT = 1;`;
+
   // Insertar tiendas
   await prisma.store.createMany({
     data: storesData,
